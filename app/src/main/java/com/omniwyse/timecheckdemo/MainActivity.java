@@ -2,14 +2,18 @@ package com.omniwyse.timecheckdemo;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.Telephony;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -197,9 +201,17 @@ public class MainActivity extends AppCompatActivity {
         {
             sendIntent.setPackage(defaultSmsPackageName);
         }
-        startActivity(sendIntent);
+        startActivityForResult(sendIntent,200);
 
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==200){
+            Log.d("TAGGG", "dsfdfgasdgsdg");
+        }
     }
 
 }
